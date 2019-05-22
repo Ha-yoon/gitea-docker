@@ -37,5 +37,5 @@ ENTRYPOINT ["/usr/bin/entrypoint"]
 CMD ["/bin/s6-svscan", "/etc/s6"]
 
 COPY docker/root /
-COPY gitea-1.8.1-linux-amd64 /app/gitea/gitea
+COPY gitea.amd64 /app/gitea/gitea
 RUN ln -s /app/gitea/gitea /usr/local/bin/gitea
