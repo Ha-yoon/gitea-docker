@@ -20,7 +20,7 @@ services:
       - POSTGRES_PASSWORD=example
       - POSTGRES_DB=gitea
     volumes:
-      - ./db/:/var/lib/postgresql
+      - ./db/:/var/lib/postgresql/data
 
   drone:
     image: drone/drone:1
