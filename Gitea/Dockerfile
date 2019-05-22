@@ -38,4 +38,8 @@ CMD ["/bin/s6-svscan", "/etc/s6"]
 
 COPY docker/root /
 COPY gitea.amd64 /app/gitea/gitea
+
+RUN chmod +x /usr/bin/entrypoint && \
+  chmod +x /app/gitea/gitea
+  
 RUN ln -s /app/gitea/gitea /usr/local/bin/gitea
