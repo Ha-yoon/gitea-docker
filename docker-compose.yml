@@ -22,6 +22,25 @@ services:
     volumes:
       - ./db/:/var/lib/postgresql
 
+  drone:
+    image: drone/drone:1
+    ports:
+      - 80:8000
+      - 9000:9000
+    volumes:
+      - ./drone:/var/lib/drone/
+    restart: always
+    depends_on:
+      - web
+    environment:
+      - DRONE_GIT_ALWAYS_AUTH=false
+      - DRONE_GITEA_SERVER=http://165.22.200.132:3000
+      - DRONE_RPC_SECRET=q3r8GhcyUA2MF5shMhLWUntz
+      - DRONE_SERVER_HOST=http://165.22.200.132:8000
+      - DRONE_SERVER_PROTO=http
+      - DRONE_TLS_AUTOCERT=false
+      - DRONE_AGENTS_ENABLED=true
+
     # to use mysql uncomment following
     # image: mariadb:10
     # restart: always
