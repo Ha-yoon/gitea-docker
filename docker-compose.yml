@@ -31,6 +31,8 @@ services:
     build: ./services/Gitea
     volumes:
       - ./volumes/data/:/data
+    networks:
+      - web
     ports:
       # - "3000:3000"
       - "2233:22"
@@ -41,12 +43,14 @@ services:
       - "traefik.frontend.rule=Host:dev.maymeow.io"
       - "traefik.docker.network=web"
       - "traefik.enable=true"
-      - "traefik.port=80"
+      - "traefik.port=3000"
       - "traefik.protocol=http"
 
   db:
     image: postgres
     restart: always
+    networks:
+      - web
     environment:
       - POSTGRES_PASSWORD=example
       - POSTGRES_DB=gitea
@@ -55,6 +59,8 @@ services:
 
   drone:
     image: drone/drone:1.1
+    networks:
+      - web
     ports:
       # - 8000:80
       - 9000:9000
@@ -75,7 +81,7 @@ services:
       - "traefik.frontend.rule=Host:drone.maymeow.io"
       - "traefik.docker.network=web"
       - "traefik.enable=true"
-      - "traefik.port=80"
+      - "traefik.port=8000"
       - "traefik.protocol=http"
 
     # to use mysql uncomment following
