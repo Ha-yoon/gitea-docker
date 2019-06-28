@@ -28,7 +28,7 @@ services:
   # Source Code versioning with CI
   web:
     # image: gitea/gitea:1.7.1
-    build: ./Gitea
+    build: ./services/Gitea
     volumes:
       - ./volumes/data/:/data
     ports:
